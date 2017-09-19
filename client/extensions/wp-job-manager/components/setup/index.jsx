@@ -19,6 +19,12 @@ import Wizard from 'components/wizard';
 import { getSelectedSiteSlug } from 'state/ui/selectors';
 
 class SetupWizard extends Component {
+	static propTypes = {
+		slug: PropTypes.string,
+		stepName: PropTypes.string,
+		translate: PropTypes.func.isRequired,
+	};
+
 	render() {
 		const steps = [ Steps.INTRO, Steps.PAGE_SETUP, Steps.CONFIRMATION ];
 		const components = {
@@ -51,11 +57,5 @@ class SetupWizard extends Component {
 const mapStateToProps = state => ( {
 	slug: getSelectedSiteSlug( state ),
 } );
-
-SetupWizard.propTypes = {
-	slug: PropTypes.string,
-	stepName: PropTypes.string,
-	translate: PropTypes.func.isRequired,
-};
 
 export default connect( mapStateToProps )( localize( SetupWizard ) );
